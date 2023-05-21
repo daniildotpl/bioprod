@@ -1,0 +1,15 @@
+{% load static %}
+{% load site_tags %}
+
+
+<form action="{% url 'sear_resu' %}" method="GET" class="search">
+    {% csrf_token %}
+
+    {% sear_form as sear_form %}
+    {{ sear_form.quer }}
+
+    <button>
+        <img src="{% static 'app_site/images/search-gr.png' %}" alt="">
+    </button>
+
+</form>

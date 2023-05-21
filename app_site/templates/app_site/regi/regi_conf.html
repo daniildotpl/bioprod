@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="level">
+    <div class="widther content">
+        <div class="span4 gate">
+
+            <h1 class="bt1">{{ title }}</h1>
+            <div class="span12 wrap">{{ data|safe }}</div>
+            <div class="span12 wrap center">
+                <div class="span12 butt"><a href="{% url 'lgn' %}" class="btn">Войти</a></div>
+                <div class="span12 link"><a href="{% url 'regi' %}">Зарегистрировать нового пользователя</a></div>
+                <div class="span12 link"><a href="{% url 'rese' %}">Забыли пароль?</a></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

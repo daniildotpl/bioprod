@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+
+{% block content %}
+
+<div class="level">
+    <div class="widther">
+        <div class="span4 gate">
+
+            <h1 class="bt1">{{ title }}</h1>
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {{ form.email.errors }}
+                <div class="span12 wrap">{{ form.email }}</div> 
+                <div class="span12 wrap center">
+                    <div class="span12 butt"><button type="submit" class="btn">Отправить</button></div>
+                    <div class="span12 link"><a href="{% url 'regi' %}">Зарегистрировать нового пользователя</a></div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

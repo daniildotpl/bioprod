@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="level">
+    <div class="widther content">
+        <div class="span4 gate">
+            <h1 class="bt1">{{ title }}</h1>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {{ form.email.errors }}
+                <div class="wrap span12">{{ form.email }}</div>
+                {{ form.username.errors }}
+                <div class="wrap span12">{{ form.username }}</div><div id="error"></div>
+                {{ form.password1.errors }}
+                <div class="wrap span12">{{ form.password1 }}</div>
+                {{ form.password2.errors }}
+                <div class="wrap span12">{{ form.password2 }}</div>
+                {{ form.messages }}
+                <div class="wrap span12 center">
+                    <div class="span12 butt"><button type="submit" class="btn">Зарегистрироваться</button></div>
+                    <div class="span12 link"><a href="{% url 'lgn' %}">Вернуться к авторизации</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,31 @@
+{% extends "app_site/site_base.html" %}
+{% load i18n static %}
+
+{% block content %}
+
+<div class="level">
+    <div class="widther content">
+        <div class="span4 gate">
+
+            <h1 class="bt1">{{ title }}</h1>
+
+            {% if validlink %}
+            <form method="post">{% csrf_token %}
+                <input class="hidden" autocomplete="username" value="{{ form.user.get_username }}">
+                {{ form.new_password1.errors }}
+                <div class="wrap">{{ form.new_password1 }}</div>
+                {{ form.new_password2.errors }}
+                <div class="form-row field-password2">{{ form.new_password2 }}</div>
+                <div class="span12 wrap center">
+                    <div class="span12 butt"><button type="submit" class="btn">Войти</button></div>
+                </div>
+            </form>
+            {% else %}
+            <p>{% translate "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset." %}</p>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

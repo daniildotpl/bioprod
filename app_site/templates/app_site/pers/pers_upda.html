@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="level crea_upda top">
+    <div class="widther content top">
+
+        <div class="span9 body">
+            {% if form %}
+            
+            {% include 'app_site/successmessage.html' %}
+            {% include 'app_site/pers/pers_back.html' %}
+            
+            <h1 class="bt1">{{ title }}</h1>
+            
+            <div class="span12">
+                <form method="POST" enctype="multipart/form-data">
+                    
+                    {% csrf_token %}
+                    {{ form.media }}
+
+                    <div class="error">{{ form.non_field_errors }}</div>
+
+                    <div class="groups">
+                        {{ form.username.errors }}
+                        <label class="lab">{{ form.username.label }}</label>
+                        {{ form.username }}
+                    </div>
+
+                    <div class="groups">
+                        {{ form.email.errors }}
+                        <label class="lab">{{ form.email.label }}</label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="groups">
+                        {{ form.last_name.errors }}
+                        <label class="lab">{{ form.last_name.label }}</label>
+                        {{ form.last_name }}
+                    </div>
+
+                    <div class="groups">
+                        {{ form.first_name.errors }}
+                        <label class="lab">{{ form.first_name.label }}</label>
+                        {{ form.first_name }}
+                    </div>
+
+                    <div class="groups">
+                        {{ form.patr_name.errors }}
+                        <label class="lab">{{ form.patr_name.label }}</label>
+                        {{ form.patr_name }}
+                    </div>
+
+                    <div class="groups">
+                        {{ form.phon.errors }}
+                        <label class="lab">{{ form.phon.label }}</label>
+                        {{ form.phon }}
+                    </div>
+
+                    <div class="groups">
+                        {{ form.phot.errors }}
+                        <label class="lab">{{ form.phot.label }}</label>
+                        {{ form.phot }}
+                    </div> 
+
+                    <div class="span12 left buts">
+                        <div class="span4"><button type="submit" class="btn">Сохранить</button></div>
+                        <div class="span4 center"><a href="{% url 'pers' %}">Вернуться в профиль не сохраняя</a></div>
+                        <div class="span4 right"><a href="{% url 'pers_remo' request.user.id %}"  class="rem">Удалить</a></div>
+                    </div> 
+
+                </form>
+            </div>
+
+            {% else %}
+            <p>No data</p>
+            {% endif %}
+        
+        </div>
+        
+        <div class="span3 aside">{% include 'app_site/pers/pers_menu.html' %}</div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+

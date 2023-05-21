@@ -1,0 +1,147 @@
+<!-- coding:utf-8 -->
+{% load static %}
+{% load site_tags %}
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'app_site/images/favicon.ico' %}" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" href="{% static 'app_site/css/basestyle_site.css' %}">
+    <link rel="stylesheet" href="{% static 'app_site/css/mystyle_site.css' %}">
+    <script src="{% static 'app_site/js/myjs.js' %}"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- XDSoft DateTimePicker -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+    <title>{{ title }}</title>
+
+
+    <!-- APP CSS -->
+    <link rel="stylesheet" href="{% static 'app_gine/css/app_gine.css' %}">
+    <link rel="stylesheet" href="{% static 'app_usdata/css/app_usdata.css' %}">
+    <!-- /APP CSS -->
+
+    <!-- APP JS -->
+    <script src="{% static 'app_gine/js/app_gine.js' %}"></script>
+    <!-- /APP JS -->
+</head>
+
+
+<body onload="startjs();">
+
+
+<style>
+    @font-face { font-family: 'head'; src: url("{% static 'app_site/fonts/UbuntuMono-B.ttf' %}"); }
+    @font-face { font-family: 'text'; src: url("{% static 'app_site/fonts/Montserrat-Light.ttf' %}"); }
+</style>
+
+
+<!-- boxshadow -->
+<div id="boxshadow" onclick="showermenu();"></div>
+
+
+<!-- leftbar -->
+<div class="leftbar right" id="leftbar">
+    <div class="menu left">
+        <a onclick="showermenu();" class="left">
+            <img src="{% static 'app_site/images/menu.png' %}" alt="" class="menu">
+            <div class="txt">меню</div>
+        </a>
+    </div>
+    <ul>
+        {% smenu as smenu %}
+        {% for sm in smenu %}
+        <li class="left">
+            <a href="{% url sm.url %}"  class="{{ sm.class }} left">
+                <img src="{% static sm.img %}" alt="">
+                <div class="txt">{{ sm.title }}</div>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+
+<!-- header -->
+<header class="level center">
+    <nav class="widther center">
+
+        <div class="menu-mob left">
+            <a onclick="showermenu();" class="left">
+                <img src="{% static 'app_site/images/menu.png' %}" alt="">
+            </a>
+        </div>
+
+        <div class="logo left">
+            <a href="{% url 'site' %}" class="left">
+                <img src="{% static 'app_site/images/logo.png' %}" alt="">
+            </a>
+        </div>
+        
+        <!-- <div class="sear center">
+            {% include 'app_site/sear_form.html' %}
+        </div> -->
+
+        <div class="menu right">
+            <ul class="center">
+                {% smenu as smenu %}
+                {% for sm in smenu %}
+                <li class="left">
+                    <a href="{% url sm.url %}"  class="{{ sm.class }} left">
+                        {{ sm.title }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul> 
+        </div>
+
+        <div class="pers right">
+            {% if user.is_authenticated %}
+            <a href="{% url 'lgt' %}?next={{ request.path }}" class="lgt right">Выйти</a>
+            <a href="{% url 'pers' %}" class="right">
+                {% if user.phot %}
+                <div class="useris" style="background-image: url('{{ user.phot.url }}');"></div>
+                {% else %}
+                <div class="useris" style="background-image: url('{% static 'app_site/images/user.png' %}');"></div>
+                {% endif %}
+            </a>
+            {% else %}
+            <a href="{% url 'regi' %}" class="right regi">
+                Регистрация
+            </a>
+            <a href="{% url 'lgn' %}?next={{ request.path }}" class="right lgn">
+                Вход
+            </a>
+            {% endif %}
+        </div>
+
+    </nav>
+</header>
+
+
+{% block content %}   
+{% endblock %}
+
+
+<!-- footer -->
+<footer class="level center">
+    <div class="widther left">
+        <div class="span12 info">
+            Template of new service Vers. 1.0
+        </div>
+    </div>
+</footer>
+
+
+</body>
+
+
+</html>

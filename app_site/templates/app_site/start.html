@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="level">
+    <div class="widther content left">
+
+        <div class="span12">
+            
+            <h1 class="bt1">{{ title }}</h1>
+            
+            <div class="span12">
+                {{ data|safe }}
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+

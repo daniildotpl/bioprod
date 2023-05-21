@@ -1,0 +1,20 @@
+{% load static %}
+
+<div class="mifb">
+
+    <input 
+        id="mifb_inp"
+        type="file" 
+        name="{{ widget.name }}"
+        accept="image/*"
+        multiple="multiple">
+    
+    <label 
+        id="mifb_lab"
+        for="mifb_inp"
+        style="background-image:url({% static '\app_site\images\addphoto.png' %})"
+        class="center"></label>
+
+</div>
+
+<div class="span12 lt2">Пожалуйста, не загружайте больше 30Mb за один раз</div>

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="level top">
+    <div class="widther content top">
+
+        <div class="span9 body">
+
+            {% include 'app_site/successmessage.html' %}
+            {% include 'app_site/pers/pers_back.html' %}
+
+            <div class="span12 group gr">
+                <div class="bt2">Сведения о документе подтверждающем личность</div>
+                {% for d in docs %}
+                <div class="wrap">
+                    <div class="wr">Документ: {{ d.titl }}</div>
+                    <div class="wr">Серия: {{ d.seri }}</div>
+                    <div class="wr">Номер: {{ d.numb }}</div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="span12 group gr">
+                <div class="bt2">Сведения об образовании</div>
+                {% for q in qual %}
+                <div class="wrap">
+                    <div class="wr">Документ: {{ q.titl }}</div>
+                    <div class="wr">Серия: {{ q.seri }}</div>
+                    <div class="wr">Номер: {{ q.numb }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            
+            <div class="span12 group">
+                <div class="bt2">Решение</div>
+                <form method="POST" enctype="multipart/form-data">
+                    
+                    {% csrf_token %}
+                    {{ form.media }}
+                    
+                    <div class="error">{{ error }}</div>
+                    <div class="error">{{ form.non_field_errors }}</div>
+                    
+                    <div class="span12 wrap">
+                        <label class="lab">{{ form.stat.label }}:</label> 
+                        {{ form.stat }}
+                    </div>
+                    
+                    <div class="span12 left buts">
+                        <div class="span4"><button type="submit" class="btn">Сохранить</button></div>
+                        <div class="span4 center"><a href="{% url 'stat_list' %}">Вернуться в список</a></div>
+                    </div>
+                
+                </form>
+            </div>
+
+        </div>
+        
+        <div class="span3 aside">{% include 'app_site/pers/pers_menu.html' %}</div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+

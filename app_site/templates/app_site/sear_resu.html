@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="level saer_res top">
+    <div class="widther content left">
+        <h1 class="bt1">{{ title }}</h1>
+
+        <div class="span12 quer">Поисковой запрос: <b>{{ quer }}</b></div>
+
+        {% if data %}
+        <div class="span12 wrap flwr">
+            {% for d in data %}
+                <div class="resu span12 ">
+                    <div class="titl">{{ d.titl }}</div>
+                    <div class="desc">{{ d.desc }}</div>
+                    <div class="more"><a href="{{ d.get_absolute_url }}">Подробнее</a></div>
+                </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="span12 no">Результатов не найдено</div>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
+

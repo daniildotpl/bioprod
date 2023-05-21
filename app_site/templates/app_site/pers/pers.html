@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load site_tags %}
+
+{% block content %}
+
+<div class="level pers top">
+    <div class="widther content top">
+
+
+        <!-- О пользователе -->
+        <div class="span9 body">
+            
+
+            <div class="span12 comm group gr top">
+                {% if user %}
+                <div class="bt1">Общее</div>
+                <div class="span2 pic">
+                    <!-- phot -->
+                    {% if user.phot %}
+                        <img class="phot" src="{{ user.phot.url }}" alt="">
+                    {% else %}
+                        <img class="phot" src="{% static 'app_site/images/user.png' %}" alt="">
+                    {% endif %}
+                    <!-- qr code -->
+                    {% if user.status.hash %}
+                        <img src="{% qrco user.status %}" alt="">
+                    {% else %}
+                        <p>qr код пока не сгенерирован</p> 
+                    {% endif %}
+                </div>
+                <div class="span10 txt">
+                    <div class="wrap">
+                        <div class="label">ФИО:</div>
+                        <div class="bt2">{{ user.last_name }} {{ user.first_name }} {{ user.patr_name }}</div>
+                    </div>
+                    <div class="span12 wrap">
+                        <div class="label">Логин:</div>
+                        <div class="data">{{ user.username }}</div>
+                    </div>
+                    <div class="span12 wrap">
+                        <div class="label">e-mail:</div>
+                        <div class="data">{{ user.email }}</div>
+                    </div>
+                    <div class="span12 wrap">
+                        <div class="label">Телефон:</div>
+                        <div class="data">{{ user.phon }}</div>
+                    </div>
+                    <div class="span12 wrap">
+                        <div class="label">Группы:</div>
+                        <div class="perm">
+                            {% for u in user_groups %}
+                            <span>{{ u }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="span12 wrap">
+                        <div class="label">Уровень медицинского доступа:</div>
+                        <div class="data">{{ user.status.stat }}</div>
+                    </div>
+                    <div class="span12 wrap">
+                        <a href="{% url 'pers_upda' request.user.id %}">Редактировать</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="span12 docs group gr left">
+                <div class="bt1">Документ удоставеряющий личность</div>
+                {% if docs %}
+                {% for d in docs %}
+                <div class="span12">
+                    <div class="span4 pic">
+                        {% if d.phot %}
+                            <img class="imgs" src="{{ d.phot.url }}" alt="">
+                        {% else %}
+                            <img class="imgs" src="{% static 'app_site/images/nophotos.png' %}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="span8 txt">
+                        <div class="span12 wrap">
+                            <div class="label">Документ:</div>
+                            <div class="data">{{ d.titl }}</div>
+                        </div>
+                        <div class="span12 wrap">
+                            <div class="label">Серия:</div>
+                            <div class="data">{{ d.seri }}</div>
+                        </div>
+                        <div class="span12 wrap">
+                            <div class="label">Номер:</div>
+                            <div class="data">{{ d.numb }}</div>
+                        </div>
+                        <div class="span12 wrap">
+                            <a href="{% url 'docs_upda' d.pk %}" class="add">Редактировать</a> | <a href="{% url 'docs_remo' d.pk %}" class="rem">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <a href="{% url 'docs_crea' %}" class="btn">Добавить</a>
+                {% endif %}
+            </div>
+            
+
+            <div class="span12 qual group gr left">
+                <div class="bt1">Документ об образовании</div>
+                {% if qual %}
+                {% for q in qual %}
+                <div class="span12">
+                    <div class="span4 pic">
+                        {% if q.phot %}
+                            <img class="imgs" src="{{ q.phot.url }}" alt="">
+                        {% else %}
+                            <img class="imgs" src="{% static 'app_site/images/nophotos.png' %}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="span8 txt">
+                        <div class="span12 wrap">
+                            <div class="label">Документ:</div>
+                            <div class="data">{{ q.titl }}</div>
+                        </div>
+                        <div class="span12 wrap">
+                            <div class="label">Серия:</div>
+                            <div class="data">{{ q.seri }}</div>
+                        </div>
+                        <div class="span12 wrap">
+                            <div class="label">Номер:</div>
+                            <div class="data">{{ q.numb }}</div>
+                        </div>
+                        <div class="span12 wrap">
+                            <a href="{% url 'qual_upda' q.pk %}" class="add">Редактировать</a> | <a href="{% url 'qual_remo' q.pk %}" class="rem">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                {% endif %}
+                <a href="{% url 'qual_crea' %}" class="btn">Добавить</a>
+            </div>
+
+        </div>
+
+        <div class="span3 aside">{% include 'app_site/pers/pers_menu.html' %}</div>
+
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<div class="level crea_upda top">
+    <div class="widther content top">
+
+        <div class="span9 body">
+            
+            {% include 'app_site/successmessage.html' %}
+            {% include 'app_site/pers/pers_back.html' %}
+
+            <h1 class="bt1">{{ title }}</h1>
+            
+            <div class="span12">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.media }}
+
+                    <div class="error">{{ error }}</div>
+                    <div class="error">{{ form.non_field_errors }}</div>
+                    
+                    <div class="span12 groups">
+                        <label class="lab">{{ form.titl.label }}:</label> 
+                        {{ form.titl }}
+                    </div>
+                    
+                    <!-- <div class="span12 groups">
+                        <label class="lab">{{ form.befo.label }}:</label> 
+                        {{ form.befo }}
+                    </div> -->
+
+                    <div class="span12 left buts">
+                        <div class="span4"><button type="submit" class="btn">Сохранить</button></div>
+                        <div class="span4 center"><a href="{% url 'faks_list' %}">Вернуться в список</a></div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        
+        <div class="span3 aside">{% include 'app_site/pers/pers_menu.html' %}</div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+

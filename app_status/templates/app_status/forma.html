@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="error">{{ error }}</div>
+<div class="error">{{ form.non_field_errors }}</div>
+
+<div class="span12 groups">
+    {{ form.titl.errors }}
+    <label class="lab">{{ form.titl.label }}:</label> 
+    {{ form.titl }}
+</div>
+
+<div class="span12 groups">
+    {{ form.phot.errors }}
+    <label class="lab">{{ form.phot.label }}:</label>
+    {{ form.phot }}
+</div>
+
+<div class="span12 groups">
+    {{ form.seri.errors }}
+    <label class="lab">{{ form.seri.label }}:</label>
+    {{ form.seri }}
+</div>
+
+<div class="span12 groups">
+    {{ form.numb.errors }}
+    <label class="lab">{{ form.numb.label }}:</label>
+    {{ form.numb }}
+</div>

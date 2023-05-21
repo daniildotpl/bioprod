@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<div class="level">
+    <div class="widther content">
+        <div class="span4 gate">
+
+            <h1 class="bt1">{{ title }}</h1>
+            <div class="span12">
+                <p>{% translate "Your password has been set.  You may go ahead and log in now." %}</p>
+            </div>
+            <div class="span12">
+                <a href="{% url 'lgn' %}" class="btn">Войти</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

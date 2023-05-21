@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="level top">
+    <div class="widther content top">
+
+        <div class="span9 body group gr">
+
+            <h1 class="bt1">{{ title }}</h1>
+
+            {% if data %}
+                {% for d in data %}
+                    <div class="row left">
+                        <div class="span1 ">{{ d.pk }} </div>
+                        <div class="span9">{{ d.titl }} </div>
+                        <div class="span1 "><a href="{% url 'medi_remo' d.pk %}" class="remo">Удалить</a></div>
+                        <div class="span1 "><a href="{% url 'medi_upda' d.pk %}">Изменить</a></div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                no objects
+            {% endif %}
+
+            <div class="wrap">
+                <a href="{% url 'medi_crea' %}" class="btn">Добавить</a>
+            </div>
+
+        </div>
+
+        <div class="span3 aside">{% include 'app_site/pers/pers_menu.html' %}</div>
+
+    </div>
+</div>
+
+{% endblock %}
+

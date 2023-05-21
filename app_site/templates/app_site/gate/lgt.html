@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="level">
+    <div class="widther content">
+        <div class="span4 gate">
+            <h1 class="bt1">{{ title }}</h1>
+            <div class="span12 wrap">
+                <a href="{% url 'lgn' %}" class="btn">Войти снова</a>
+            </div>
+            <div class="span12 wrap">
+                <a href="{% url 'regi' %}" cladd="">Зарегистрировать нового пользователя</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

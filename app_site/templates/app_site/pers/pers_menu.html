@@ -1,0 +1,13 @@
+{% load site_tags %}
+<!-- {{ user_groups }} -->
+<!-- {{ perm }} -->
+ 
+
+{% persmenu as persmenu %}
+<div class="menu">
+    <ul>
+        {% for p in persmenu %}
+        <li><a href="{% url p.urll %}">{{ p.titl }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

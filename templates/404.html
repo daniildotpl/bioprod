@@ -1,0 +1,21 @@
+{% extends 'app_site/site_base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="level top">
+    <div class="widther content left">
+        <div class="span12">
+            <h1 class="bt1">Ошибка 404</h1>
+            <p>
+                Страница не найдена :(
+            </p>
+            <p>{{ data|safe }}</p>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+

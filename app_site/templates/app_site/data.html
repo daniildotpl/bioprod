@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="level top">
+    <div class="widther content left">
+        
+        <div class="span12">
+            
+            <p>
+                {% for message in messages %}
+                    <div class="span12 tbpa">{{ message }}</div>
+                {% endfor %}
+            </p>
+
+            <a href="{% url 'site' %}" class="home">
+                <img src="{% static 'app_site/images/home.png' %}" alt="">
+                <span>Home</span>
+            </a>
+
+            <h1 class="bt1">{{ title }}</h1>
+            
+            <p>{{ data|safe }}</p>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+

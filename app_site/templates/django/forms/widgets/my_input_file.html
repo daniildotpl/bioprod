@@ -1,0 +1,63 @@
+{% load static %}
+
+<div class="ncfi">
+
+
+    <label
+        id="prev_{{ widget.checkbox_id }}"
+        for="uplo_{{ widget.checkbox_id }}"
+        class="prev" 
+        {% if widget.is_initial %}
+            style="background-image: url('{{ widget.value.url }}')"
+        {% else %}
+            style="background-image: url('{% static 'app_site/images/addphoto.png' %}');"
+        {% endif %}
+        >
+    </label>
+
+
+    <div class="center">
+    {% if widget.is_initial %}
+        <label 
+            class="dele" 
+            for="dele_{{ widget.checkbox_id }}"
+            style="background-image: url('{% static 'app_site/images/delete.png' %}');"
+            >
+        </label>
+        <label 
+            class="uplo" 
+            for="uplo_{{ widget.checkbox_id }}"
+            style="background-image: url('{% static 'app_site/images/upload.png' %}');"
+            >
+        </label>
+    {% else %}
+        <label 
+            class="dele first"
+            for="dele_{{ widget.checkbox_id }}"
+            style="background-image: url('{% static 'app_site/images/delete.png' %}');" 
+            onclick="location.reload();" >
+        </label>
+    {% endif %}
+    </div>
+
+<!-- invisible -->
+<input 
+    id="uplo_{{ widget.checkbox_id }}"
+    type="{{ widget.type }}" 
+    name="{{ widget.name }}" 
+    class="uplo" 
+    onclick="show_loaded_image('{{ widget.checkbox_id }}');"
+    {% include "django/forms/widgets/attrs.html" %} 
+    >
+<input 
+    id="dele_{{ widget.checkbox_id }}" 
+    type="checkbox"
+    name="{{ widget.checkbox_name }}" 
+    class="dele" 
+    onclick="show_deleted_image('{{ widget.checkbox_id }}');"
+    {% if widget.attrs.disabled %} disabled{% endif %}
+    >
+<!--  -->
+
+
+</div>
