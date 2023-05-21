@@ -18,7 +18,7 @@ admin.site.register(Faks, FaksAdmin)
 
 # Перерегистрируем модель Medicines
 class MedicinesAdmin(admin.ModelAdmin):
-    list_display = ['titl']
+    list_display = ['titl', 'faks']
 admin.site.register(Medicines, MedicinesAdmin)
 
 

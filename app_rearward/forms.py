@@ -21,7 +21,9 @@ class LocaForm(ModelForm):
 
 
 class FaksForm(ModelForm):
+    ch = Medicines.objects.all().values_list('pk', 'titl')
     titl = forms.CharField(label='Аптечка', widget=TextInput(attrs={'class': 'inp', 'placeholder': ''}), required=True)
+    faks = forms.ChoiceField(choices=ch, label="Добавить средство")
 
     class Meta:
         model = Faks

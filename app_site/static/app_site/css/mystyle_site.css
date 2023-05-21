@@ -553,24 +553,12 @@ footer > div .info { color: #555; font-size: 80%; }
 
     .home .wrap .txt .bt1 { font-size: 300%; }
 
-
-    /*--- arts_lst ---*/
-    .arts_lst .wrap { justify-content: space-between; }
-    .arts_lst .wrap .itm { width: 45%; padding: 20px 0; }
-    
-    /*--- arts_itm ---*/
-    .arts_itm .sign { padding: 10px 0; }
-
     /*--- crea_upda ---*/
     .crea_upda .sign { padding: 10px 0; }
 
-    /*--- work ---*/
-    .resu_itm .pic { width: 150px; }
+    /* --- aside --- */
+    .aside { padding: 20px 0; }
 
-    /* --- about ---*/
-    .about .list { padding: 0 0 20px 0; }    
-
-    
     .crea_upda .body .buts > div { justify-content: flex-start; padding: 8px 0; }
     
     /*--- footer ---*/

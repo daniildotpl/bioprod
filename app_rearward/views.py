@@ -1,5 +1,5 @@
 from time import gmtime, strftime
-from django.views.generic import ListView, UpdateView, CreateView, DeleteView
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView, FormView
 from django.urls.base import reverse_lazy
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
@@ -117,6 +117,7 @@ class FaksUpda(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Редактор аптечек'
+        context['medi'] = Medicines.objects.filter(faks=self.object)
         return context
 
     def get_success_url(self):
@@ -124,6 +125,14 @@ class FaksUpda(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     
     def form_valid(self, form):
         form.instance.user = self.request.user
+
+        medi_pk = self.request.POST.get('faks')
+        print(medi_pk)
+
+        medi = Medicines.objects.get(pk=medi_pk)
+        medi.faks = self.object
+        medi.save()
+
         # --- отсылка письма админу ---
         # self.send('Добавлена статья "{}"'.format(form.instance.titl))
         return super().form_valid(form)
@@ -139,6 +148,43 @@ class FaksRemo(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
         context = super().get_context_data(**kwargs)
         context['title'] = _('Удаление объекта №') + ' ' + str(context['object'].pk)
         return context
+
+
+# class FaksUpdaMedi(LoginRequiredMixin, PermissionRequiredMixin, FormView):
+#     permission_required = 'app_rearward.change_faks'
+    
+#     form_class = FaksUpdaMediForm
+#     template_name = 'app_rearward/faks_upda_medi.html'
+#     context_object_name = 'data'
+#     login_url = reverse_lazy('lgn')
+
+#     def faks_pk(self):
+#         return self.request.resolver_match.kwargs['pk']
+
+
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = 'Редактор аптечек'
+#         return context
+
+#     def get_success_url(self):
+#         return reverse_lazy('faks_upda', args = [self.faks_pk()])  
+    
+#     def form_valid(self, form):
+#         print(form.instance)
+
+#         medi_pk = form.instance
+
+#         medi = Medicines.objects.get(pk=medi_pk)
+#         medi.faks = Faks.objects.get(pk=self.faks_pk())
+#         medi.save()
+
+        
+        
+#         form.instance.user = self.request.user
+#         # --- отсылка письма админу ---
+#         # self.send('Добавлена статья "{}"'.format(form.instance.titl))
+#         return super().form_valid(form)
 
 
 

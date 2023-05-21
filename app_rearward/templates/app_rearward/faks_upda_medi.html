@@ -21,28 +21,10 @@
 
                     <div class="error">{{ error }}</div>
                     <div class="error">{{ form.non_field_errors }}</div>
+
+                    {{ self }}
                     
-                    <div class="span12 groups">
-                        <label class="lab">{{ form.titl.label }}:</label> 
-                        {{ form.titl }}
-                    </div>
-
-                    <div class="span12 group gr">
-                        <div class="bt1">Средства в аптечке:</div>
-                            {% for m in medi %}
-                            <div class="span12 row">
-                                <div class="span3">{{ m.titl }}</div>
-                                <div class="span3">годен до: {{ m.befo }}</div>
-                            </div>
-                            {% endfor %}
-                    </div> 
-
-                    <div class="span12 groups">
-                        <label class="lab">{{ form.faks.label }}:</label> 
-                        {{ form.faks }}
-                    </div>
-
-
+                    {{ form }}
 
                     <div class="span12 left buts">
                         <div class="span4"><button type="submit" class="btn">Сохранить</button></div>
